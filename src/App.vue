@@ -1,13 +1,32 @@
-<!-- <template>
+<script setup>
+import { useCounterStore } from "./stores/counter";
+import { useUserStore } from "./stores/user";
 
-</template> -->
-
-<script>
-
-export default {
- 
-}
+const counterStore = useCounterStore();
+const userStore = useUserStore();
+counterStore.$subscribe((mutations, state)=>{
+  console.log(mutations);
+  console.log(state);
+});
 </script>
+<template>
+  <div>
+    <h1>Counter : {{ counterStore.counter }}</h1>
+
+    <h1>User : {{ userStore.name }}</h1>
+    <button @click="counterStore.counter++">+</button>
+    <button @click="counterStore.$reset">Reset</button>
+    <button
+      @click="
+        counterStore.$patch({
+          counter: counterStore.counter + 6,
+        })
+      "
+    >
+      patch
+    </button>
+  </div>
+</template>
 
 <style>
 #app {

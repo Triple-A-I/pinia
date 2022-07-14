@@ -15,13 +15,18 @@ const { name, age } = storeToRefs(userStore);
 <template>
   <div>
     <h1>Counter : {{ counterStore.counter }}</h1>
+    <h1>CounterGetter : {{ counterStore.getCounter }}</h1>
+    <h1>DoubleCounterGetter : {{ counterStore.getDoubleCounter }}</h1>
+    <h1>TripleCounterGetter : {{ counterStore.getTrippleCounter }}</h1>
+    <h1>MultiplyBy : {{ counterStore.multiplyBy(9) }}</h1>
 
     <h1>User : {{ userStore.name }}</h1>
     <h1>MyUser : {{ name }}</h1>
     <h1>MyAge : {{ age }}</h1>
     <button @click="age++">Age++</button>
 
-    <button @click="counterStore.counter++">+</button>
+    <button @click="counterStore.increment()">IncrementBy + </button>
+    <!-- <button @click="counterStore.decrement(95)">DecrementBy -  </button> -->
     <button @click="counterStore.$reset">Reset</button>
     <button
       @click="
